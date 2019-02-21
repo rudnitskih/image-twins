@@ -1,23 +1,22 @@
 {
-  "name": "image-twins",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "@image-twins/web",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "postinstall": "cd web && npm install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "@image-twins/core": "^1.0.3",
+    "bulma": "^0.7.4",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "morgan": "~1.9.0",
+    "multer": "^1.4.1",
+    "pug": "2.0.0-beta11",
+    "sharp": "^0.21.3"
   },
   "engines": {
     "node": "10.x"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rudnitskih/image-twins.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/rudnitskih/image-twins/issues"
-  },
-  "homepage": "https://github.com/rudnitskih/image-twins#readme"
+  }
 }
