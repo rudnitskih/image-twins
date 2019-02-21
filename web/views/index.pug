@@ -1,0 +1,82 @@
+doctype html
+html
+    head
+        title Image Twins
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+
+        link(rel='stylesheet', href="/stylesheets/style.css")
+        link(rel='stylesheet', href="/bulma/css/bulma.min.css")
+
+        script(defer='', src="https://use.fontawesome.com/releases/v5.3.1/js/all.js")
+        script(type="module" src="js/index.js")
+    body
+        .container
+            h1.title.is-2 Pixel-perfect markup validation
+            h2.subtitle Add original design PNG and URL to your markup
+
+            form.onboarding-form
+                .columns
+                    .column.is-narrow
+                        .field
+                            label.label Step 1
+                            .file.is-primary
+                                label.file-label
+                                    input.file-input(type="file" name="original" required)
+                                    span.file-cta
+                                        span.file-icon
+                                            i.fas.fa-upload
+                                        span.file-label
+                                            | Add design PNG
+                    .column.is-one-third
+                        .field
+                            label.label Step 2
+                            .control
+                                input.input(type="text", name="actualUrl" placeholder="Url to markup" required)
+
+                    .column.is-narrow
+                        .field
+                            label.label Step 3
+                            .control
+                                button.button Submit
+
+            .results
+                .success
+                    span.tag.is-medium.success__info
+                        | Twins on:&nbsp;
+                        span.success__value
+                    .success__bar
+
+                .tabs.is-toggle
+                    ul
+                        li.tabs__item.is-active
+                            a.tabs__tab
+                                span.icon.is-small
+                                    i.fas.fa-images(aria-hidden='true')
+                                span Difference
+                        li.tabs__item
+                            a.tabs__tab
+                                span.icon.is-small
+                                    i.fas.fa-pencil-alt(aria-hidden='true')
+                                span Original
+                        li.tabs__item
+                            a.tabs__tab
+                                span.icon.is-small
+                                    i.fas.fa-image(aria-hidden='true')
+                                span Actual
+
+                .results__images
+                    ul
+                        li.results__image-item.is-active
+                            // 1x1px white image ref: https://stackoverflow.com/a/14115340/4449154
+                            img.results__image(src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' alt='')
+                        li.results__image-item
+                            img.results__image(src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' alt='')
+                        li.results__image-item
+                            img.results__image(src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' alt='')
+
+
+
+
+
+
+
