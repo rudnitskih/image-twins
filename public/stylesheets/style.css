@@ -66,6 +66,7 @@
 
 .results__image {
     display: block;
+    min-width: 50%;
     margin: 0 auto;
 }
 
