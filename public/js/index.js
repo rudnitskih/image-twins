@@ -92,7 +92,7 @@ const addProcessingMessage = () => {
     if (!processFinished) {
       const pastSeconds = Math.floor((new Date() - startTime) / 1000);
 
-      messageBody.innerHTML = `Processing images can take up to 1 min.</br> Past time: ${pastSeconds}s`;
+      messageBody.innerHTML = `Processing images can take up to 30 sec.</br> Past time: ${pastSeconds}s`;
       setTimeout(step, 1000);
     }
   };

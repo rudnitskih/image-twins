@@ -2,18 +2,29 @@ const {takeScreenshot, getDiffImage, calculateInvalidPixels} = require('@image-t
 const sharp = require('sharp');
 
 
-const compressImage = ({image, width = 1200}) => {
-  return sharp(image).resize({width}).toFormat('jpg').toBuffer();
+const compressImage = ({image, width}) => {
+  if (width) {
+    return sharp(image).resize({width}).toBuffer();
+  } else {
+    return image;
+  }
 };
 
 module.exports = async (req, res, next) => {
-  const {file: {buffer: originalImage}, body: {actualUrl}} = req;
+  let {file: {buffer: originalImage}, body: {actualUrl, maxWidth = 1000}} = req;
 
   console.time('Taking screenshot');
-  const actualImage = await takeScreenshot({
+  let actualImage = await takeScreenshot({
     url: actualUrl
   });
   console.timeEnd('Taking screenshot');
+
+  console.time('Resizing');
+
+  actualImage = await compressImage({image: actualImage, width: maxWidth});
+  originalImage = await compressImage({image: originalImage, width: maxWidth});
+
+  console.timeEnd('Resizing');
 
   console.time('getDiffImage');
 
@@ -30,16 +41,12 @@ module.exports = async (req, res, next) => {
 
   console.timeEnd('calculateInvalidPixels');
 
-  const [compressedDiffImage, compressedOriginalImage, compressedActualImage] = await Promise.all([
-    compressImage({image: diffImage}),
-    compressImage({image: originalImage}),
-    compressImage({image: actualImage})
-  ]);
+  const base64prefix = `data:image/png;charset=utf-8;base64,`;
 
   res.json({
     amountInvalidPixels,
-    diffImage: `data:image/jpeg;charset=utf-8;base64,${compressedDiffImage.toString('base64')}`,
-    originalImage: `data:image/jpeg;charset=utf-8;base64,${compressedOriginalImage.toString('base64')}`,
-    actualImage: `data:image/jpeg;charset=utf-8;base64,${compressedActualImage.toString('base64')}`,
+    diffImage: `${base64prefix}${diffImage.toString('base64')}`,
+    originalImage: `${base64prefix}${originalImage.toString('base64')}`,
+    actualImage: `${base64prefix}${actualImage.toString('base64')}`,
   });
 };
