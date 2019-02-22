@@ -1,0 +1,11 @@
+### Features
+ - [x] Basic implementation taking screenshot of website
+ - [x] Basic implementation getting diff between images
+ - [x] Basic implementation calculating amount wrong pixels
+ - [x] Basic web app where user can upload image&site and get score
+ - [ ] CLI tool to do all process locally
+ - [ ] Improve speed and optimize all process
+ - [ ] Add support taking screenshots with different viewports
+ - [ ] Add control to adjust params of process
+ - [ ] Tests
+ - [ ] Error handling
