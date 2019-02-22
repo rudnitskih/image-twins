@@ -11,7 +11,7 @@ const compressImage = ({image, width}) => {
 };
 
 module.exports = async (req, res, next) => {
-  let {file: {buffer: originalImage}, body: {actualUrl, maxWidth = 1000}} = req;
+  let {file: {buffer: originalImage}, body: {actualUrl, maxWidth = 500}} = req;
 
   console.time('Taking screenshot');
   let actualImage = await takeScreenshot({
