@@ -1,2 +1,5 @@
 cli
 core
+.idea
+.DS_Store
+assets
