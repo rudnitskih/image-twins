@@ -5,7 +5,7 @@
 ## Install
 
 ```
-$ npm install --save @image-twins/cli
+$ npm install @image-twins/cli
 ```
 
 ## Options

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="891px" height="422px" viewBox="0 0 891 422">
+<filter filterUnits="objectBoundingBox" x="-7.19" y="-18.06" width="114.38" height="136.13" id="filter0">
+<feGaussianBlur in="SourceAlpha" stdDeviation="31.00" result="ogBlurOut"/>
+<feFlood flood-color="rgb(0,0,0)" flood-opacity="0.20" result="ogFloodOut"/>
+<feComposite in="ogFloodOut" in2="ogBlurOut" operator="in" result="ogRawGlow"/>
+<feComposite in="ogRawGlow" in2="SourceAlpha" operator="out" result="outerGlow"/>
+<feBlend in="outerGlow" in2="SourceGraphic" mode="normal" result="sourceGraphic"/>
+</filter>
+<rect x="56" y="56" width="779" height="310" fill="rgb(161,201,39)" filter="url(#filter0)"/></svg>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="15px" height="23px" viewBox="0 0 15 23">
+<clipPath id="clip0"><path fillRule="evenodd" d="M 15 15.86C 15 19.81 11.64 23.01 7.5 23.01 3.36 23.01 0 19.81 0 15.86 0 11.92 7.5-0 7.5-0 7.5-0 15 11.92 15 15.86Z"/></clipPath><path fillRule="evenodd" d="M 15 15.86C 15 19.81 11.64 23.01 7.5 23.01 3.36 23.01 0 19.81 0 15.86 0 11.92 7.5-0 7.5-0 7.5-0 15 11.92 15 15.86Z" fill="none" stroke="rgb(227,233,233)" stroke-width="6.00px" clip-path="url(#clip0)"/></svg>

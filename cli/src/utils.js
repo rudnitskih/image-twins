@@ -1,18 +1,11 @@
-function compressImage({image, width}) {
-  const sharp = require('sharp');
+const sharp = require('sharp');
+const chalk = require('chalk');
+const mdlog = require('mdlog')();
+const fs = require('fs');
 
-  if (width) {
-    return sharp(image).resize({width}).toBuffer();
-  } else {
-    return sharp(image).toBuffer();
-  }
-}
 
 function saveDiff({image, path}) {
-  const sharp = require('sharp');
-
-  return sharp(image)
-    .toFile(path);
+  return sharp(image).toFile(path);
 }
 
 function getPkgParams() {
@@ -22,31 +15,39 @@ function getPkgParams() {
 }
 
 function logError(errText) {
-  const chalk = require('chalk');
 
   console.log(chalk`{bold.red Error:} {red ${errText}}`);
 }
 
 function logVersion() {
-  const chalk = require('chalk'),
-    {name, version} = getPkgParams();
+  const {name, version} = getPkgParams();
 
   console.log(chalk`{bold.green ${name}}{cyan @${version}}`);
 }
 
 function logHelp() {
-  const mdlog = require('mdlog')(),
-    fs = require('fs'),
-    helpContext = fs.readFileSync('./README.md', 'utf8');
+  const helpContext = fs.readFileSync('./README.md', 'utf8');
 
   mdlog(helpContext);
 }
 
+function logResult(amountInvalidPixels) {
+  const amountValidPixels = 100 - amountInvalidPixels;
+
+  console.log(
+    chalk.hsl(numberToHue(amountValidPixels), 100, 50)(`Markup and mockup the same on: ${amountValidPixels.toFixed(2)}%`)
+  );
+}
+
+function numberToHue(i) {
+  // red = 0° and green = 120°
+  return Math.round(i) * 1.2;
+}
+
 module.exports = {
-  compressImage,
   saveDiff,
-  getPkgParams,
   logError,
   logVersion,
-  logHelp
-}
+  logHelp,
+  logResult
+};

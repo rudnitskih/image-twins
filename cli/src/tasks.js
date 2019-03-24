@@ -1,10 +1,10 @@
-const Listr = require('listr'),
-  {takeScreenshot, getDiffImage, calculateInvalidPixels} = require('@image-twins/core'),
-  {logError, compressImage, saveDiff} = require('./utils');
+const Listr = require('listr');
+const {takeScreenshot, getDiffImage, calculateInvalidPixels, compressImage} = require('@image-twins/core');
+const {saveDiff} = require('./utils');
 
 module.exports = new Listr([
   {
-    title: `Looking for original image`,
+    title: `Processing original image`,
     enabled: ({options: {originalImage}}) => !!originalImage,
     task: ctx => {
       const {options: {originalImage, maxWidth}} = ctx;
@@ -17,19 +17,18 @@ module.exports = new Listr([
   },
   {
     title: `Try to create screenshot`,
-    enabled: ({options: {actualUrl, actualImage}}) => !!actualUrl && !actualImage,
+    enabled: ({options: {actualUrl, actualImage}}) => !actualImage,
     task: ctx => {
       const {options: {actualUrl, maxWidth}} = ctx;
 
-      return takeScreenshot({url: actualUrl})
+      return takeScreenshot({url: actualUrl, width: maxWidth})
         .then(buffer => {
           ctx.actualImageBuffer = buffer;
         });
     }
   },
   {
-    title: `Looking for actual image`,
-    enabled: ({actualImageBuffer, options: {actualImage}}) => !!actualImage || !!actualImageBuffer,
+    title: `Processing actual image`,
     task: ctx => {
       const {actualImageBuffer, options: {actualImage, maxWidth}} = ctx;
 
@@ -40,7 +39,7 @@ module.exports = new Listr([
     }
   },
   {
-    title: `Calculate image diff`,
+    title: `Calculate images diff`,
     task: ctx => {
       const {originalImage, actualImage} = ctx;
 

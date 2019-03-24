@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
+const defaultFlow = require('./src/tasks');
+const parseOption = require('./src/parseOptions');
+const {logError, logVersion, logHelp, logResult} = require('./src/utils');
+
 cli();
 
 function cli() {
-  const parseOption = require('./src/parseOptions'),
-    options = parseOption(process.argv.slice(2)),
-    defaultFlow = require('./src/tasks'),
-    {logError, logVersion, logHelp} = require('./src/utils');
+  const options = parseOption(process.argv.slice(2));
 
   if (options.version) {
     return logVersion();
@@ -19,7 +20,7 @@ function cli() {
   if ((options.actualImage || options.actualUrl) && options.originalImage) {
     return defaultFlow
         .run({options})
-        .then(({amountInvalidPixels}) => console.log(`Amount of invalid pixels: `, amountInvalidPixels));
+        .then(({amountInvalidPixels}) => logResult(amountInvalidPixels));
   }
 
   logError(`Sorry. I did not understand you... May be you need to read a help:`);
