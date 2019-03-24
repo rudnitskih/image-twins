@@ -45,8 +45,8 @@ form.addEventListener('submit', async (e) => {
 const updateResults = ({actualImage, originalImage, amountInvalidPixels, diffImage}) => {
   submitButton.removeAttribute('disabled');
 
-  successValue.innerText = Number(amountInvalidPixels).toFixed() + '%';
-  success.style.setProperty('--missing-score-percent', 100 - Number(amountInvalidPixels) + '%');
+  successValue.innerText = Number(100 - amountInvalidPixels).toFixed() + '%';
+  success.style.setProperty('--missing-score-percent', Number(amountInvalidPixels) + '%');
 
   const images = [diffImage, actualImage, originalImage];
 
