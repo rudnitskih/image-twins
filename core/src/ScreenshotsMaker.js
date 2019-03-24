@@ -18,14 +18,14 @@ module.exports = class ScreenshotsMaker {
     await page.goto(url, {waitUntil: 'networkidle2'});
 
     const bodyHandle = await page.$('body');
-    const {width, height} = await bodyHandle.boundingBox();
+    const {width: pageWidth, height: pageHeight} = await bodyHandle.boundingBox();
 
     const screenshotImage = await page.screenshot({
       clip: {
         x: 0,
         y: 0,
-        width,
-        height
+        width: pageWidth,
+        height: pageHeight
       },
       type: 'png'
     });
