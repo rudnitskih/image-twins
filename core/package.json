@@ -1,6 +1,6 @@
 {
   "name": "@image-twins/core",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "src/index.js",
   "scripts": {
@@ -12,6 +12,7 @@
     "looks-same": "^6.0.0",
     "png-js": "^0.1.1",
     "pngjs": "^3.3.3",
-    "puppeteer": "^1.12.2"
+    "puppeteer": "^1.12.2",
+    "sharp": "^0.21.3"
   }
 }

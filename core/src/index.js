@@ -1,5 +1,6 @@
 const ScreenshotsMaker = require('./ScreenshotsMaker.js');
 const ImageDiffer = require('./ImageDiffer.js');
+const sharp = require('sharp');
 
 const imageDiffer = new ImageDiffer();
 
@@ -20,5 +21,13 @@ module.exports = {
 
   calculateInvalidPixels: ({diffImage}) => {
     return imageDiffer.calculatePixels({diffImage});
+  },
+
+  compressImage: ({image, width}) => {
+    if (width) {
+      return sharp(image).resize({width}).toBuffer();
+    } else {
+      return image;
+    }
   }
 };
